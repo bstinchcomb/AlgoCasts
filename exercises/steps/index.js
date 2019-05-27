@@ -17,6 +17,16 @@
 //       '### '
 //       '####'
 
-function steps(n) {}
+// Method One - My loopy first attempt
+function steps(n) {
+    for (var i = 0; i <n; i++){
+        var result = '';
+        for (var j = 0; j < n; j++){
+            if (j <= i){result += '#';}
+            else{result += ' ';}
+        }
+        console.log(result);
+    }
+}
 
 module.exports = steps;
