@@ -15,6 +15,62 @@
 //     [11, 16, 15, 6],
 //     [10,  9,  8, 7]]
 
-function matrix(n) {}
+// Method One - I was on the right track, but I needed a hint
+// Test time
+function matrix(n) {
+    let matrix = [...Array(n)].map(x=>Array(n).fill());
+    let count = 1;
+    let startCol = 0;
+    let startRow = 0;
+    let endCol = n - 1;
+    let endRow = n - 1;
+    console.log('count '+count+startCol+startRow+endCol+endRow);
+    matrix[startRow][endCol] = count;
+    console.log(JSON.stringify(matrix));
+
+    // Four loops across (increment startRow), down (decrement endCol), 
+    // back (decrement endRow), up (incement startCol)
+    while (count < n*n){
+        // This loop goes forward across the top-most row
+        for (var col = startCol; col <= endCol; col++){
+            // Put 'count' into each position acrosss the row
+            matrix[startRow][col] = count;
+            count++;
+        }
+        console.log('n = ' + n + ' ' + JSON.stringify(matrix));
+        startRow++; // Top-most row is now the next row
+
+        // This loop move down the end-most column
+        for(var row = startRow; row <= endRow; row++){
+            // Put 'count' into each position going down the column
+            matrix[row][endCol] = count;
+            count++;
+        }
+        console.log('n = ' + n + ' ' + JSON.stringify(matrix));
+        endCol--; // End column is full, move to the left
+
+        // This loop moves up the back across the bottom-most row
+        for (var col = endCol; col >= startCol; col--){
+            // Put 'count' into each position on bottom row
+            matrix[endRow][col] = count;
+            count++;
+        }
+        console.log('n = ' + n + ' ' + JSON.stringify(matrix));
+        endRow--; // Bottom row is filled, move up
+
+        // Finally, go up the left-most column
+        for(var row = endRow; row >=startRow; row --){
+            // Put 'count' into each space up the column
+            matrix[row][startCol] = count;
+            count++;
+        }
+        console.log('n = ' + n + ' ' + JSON.stringify(matrix));
+        startCol++;
+
+        // Repeat as necessary
+    }
+
+    return matrix;
+}
 
 module.exports = matrix;
