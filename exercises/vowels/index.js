@@ -8,10 +8,10 @@
 //   vowels('Why?') --> 0
 
 
-// Method One - (test 3.039s)
+// Method One - (test 2.88s)
 function vowels(str) {
     let count = 0;
-    for (const char of str) {
+    for (let char of str) {
         vowels = /[aeiouAEIOU]/g;
         if (vowels.test(char)){
             count++;
@@ -19,5 +19,27 @@ function vowels(str) {
     }
     return count;
 }
+
+// Method Two - from StackOverflow (test 2.95s)
+/* function vowels(str) {
+    var matches = str.match(/[aeiou]/gi);
+    return matches === null ? 0 : matches.length;
+} */
+
+// Method 3 - from another site (test 2.95s)
+/* function vowels(str) {
+    const vowels = ["a", "e", "i", "o", "u"];
+    // Initialize counter
+    let counter = 0;
+
+    // Loop through text to test if each character is a vowel
+    for (let letter of str.toLowerCase()){
+        if (vowels.includes(letter)) {
+            counter++
+        }
+    }
+    return counter;
+} */
+
 
 module.exports = vowels;
