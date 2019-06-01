@@ -24,20 +24,16 @@ function matrix(n) {
     let startRow = 0;
     let endCol = n - 1;
     let endRow = n - 1;
-    console.log('count '+count+startCol+startRow+endCol+endRow);
-    matrix[startRow][endCol] = count;
-    console.log(JSON.stringify(matrix));
 
     // Four loops across (increment startRow), down (decrement endCol), 
     // back (decrement endRow), up (incement startCol)
-    while (count < n*n){
+    while (count <= n*n){        // Video lesson uses while (startCol <= endCol && startRow <= endRow) 
         // This loop goes forward across the top-most row
         for (var col = startCol; col <= endCol; col++){
             // Put 'count' into each position acrosss the row
             matrix[startRow][col] = count;
             count++;
         }
-        console.log('n = ' + n + ' ' + JSON.stringify(matrix));
         startRow++; // Top-most row is now the next row
 
         // This loop move down the end-most column
@@ -46,7 +42,6 @@ function matrix(n) {
             matrix[row][endCol] = count;
             count++;
         }
-        console.log('n = ' + n + ' ' + JSON.stringify(matrix));
         endCol--; // End column is full, move to the left
 
         // This loop moves up the back across the bottom-most row
@@ -55,7 +50,6 @@ function matrix(n) {
             matrix[endRow][col] = count;
             count++;
         }
-        console.log('n = ' + n + ' ' + JSON.stringify(matrix));
         endRow--; // Bottom row is filled, move up
 
         // Finally, go up the left-most column
@@ -64,12 +58,12 @@ function matrix(n) {
             matrix[row][startCol] = count;
             count++;
         }
-        console.log('n = ' + n + ' ' + JSON.stringify(matrix));
         startCol++;
 
         // Repeat as necessary
     }
-
+    console.log('n = ' + n + ' ' + JSON.stringify(matrix));
+    
     return matrix;
 }
 
